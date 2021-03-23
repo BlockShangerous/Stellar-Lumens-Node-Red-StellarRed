@@ -21,31 +21,6 @@
         "info": ""
     },
     {
-        "id": "811f43f8.3def3",
-        "type": "subflow",
-        "name": "CACHE FLOW",
-        "info": "",
-        "in": [
-            {
-                "x": 80,
-                "y": 120,
-                "wires": []
-            }
-        ],
-        "out": [
-            {
-                "x": 1180,
-                "y": 120,
-                "wires": [
-                    {
-                        "id": "6ccff4fe.aa373c",
-                        "port": 0
-                    }
-                ]
-            }
-        ]
-    },
-    {
         "id": "221f19a8.5d274e",
         "type": "group",
         "z": "9928af8e.21852",
@@ -79,160 +54,6 @@
         "y": 599,
         "w": 152,
         "h": 82
-    },
-    {
-        "id": "a8557028.e1acf",
-        "type": "telegram bot",
-        "botname": "CannoneerBot",
-        "usernames": "",
-        "chatids": "",
-        "baseapiurl": "",
-        "updatemode": "polling",
-        "pollinterval": "300",
-        "usesocks": false,
-        "sockshost": "",
-        "socksport": "6667",
-        "socksusername": "anonymous",
-        "sockspassword": "",
-        "bothost": "",
-        "botpath": "",
-        "localbotport": "8443",
-        "publicbotport": "8443",
-        "privatekey": "",
-        "certificate": "",
-        "useselfsignedcertificate": false,
-        "sslterminated": false,
-        "verboselogging": false
-    },
-    {
-        "id": "d429945.59c2868",
-        "type": "telegram bot",
-        "botname": "CannoneerBot",
-        "usernames": "BAMF69",
-        "chatids": "",
-        "baseapiurl": "",
-        "updatemode": "polling",
-        "pollinterval": "400",
-        "usesocks": false,
-        "sockshost": "",
-        "socksport": "6667",
-        "socksusername": "anonymous",
-        "sockspassword": "",
-        "bothost": "",
-        "botpath": "",
-        "localbotport": "8443",
-        "publicbotport": "8443",
-        "privatekey": "",
-        "certificate": "",
-        "useselfsignedcertificate": false,
-        "sslterminated": false,
-        "verboselogging": false
-    },
-    {
-        "id": "1460580e.155d28",
-        "type": "ui_group",
-        "name": "Check Balances",
-        "tab": "",
-        "order": 2,
-        "disp": true,
-        "width": "12",
-        "collapse": false
-    },
-    {
-        "id": "cb0b3d69.08383",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
-            }
-        },
-        "site": {
-            "name": "Stellar UI",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 2
-            }
-        }
     },
     {
         "id": "41307496.abefbc",
@@ -387,82 +208,6 @@
         "collapse": false
     },
     {
-        "id": "5629da6e.bfc8a4",
-        "type": "telegram bot",
-        "botname": "TheStellarBot",
-        "usernames": "",
-        "chatids": "",
-        "baseapiurl": "",
-        "updatemode": "polling",
-        "pollinterval": "300",
-        "usesocks": false,
-        "sockshost": "",
-        "socksport": "6667",
-        "socksusername": "anonymous",
-        "sockspassword": "",
-        "bothost": "",
-        "botpath": "",
-        "localbotport": "8443",
-        "publicbotport": "8443",
-        "privatekey": "",
-        "certificate": "",
-        "useselfsignedcertificate": false,
-        "sslterminated": false,
-        "verboselogging": false
-    },
-    {
-        "id": "c3670dce.18aa8",
-        "type": "telegram bot",
-        "botname": "HeinzBot",
-        "usernames": "",
-        "chatids": "",
-        "baseapiurl": "",
-        "updatemode": "polling",
-        "pollinterval": "300",
-        "usesocks": false,
-        "sockshost": "",
-        "socksport": "",
-        "socksusername": "anonymous",
-        "sockspassword": "",
-        "bothost": "",
-        "localbotport": "8443",
-        "publicbotport": "8443",
-        "privatekey": "",
-        "certificate": "",
-        "useselfsignedcertificate": false,
-        "sslterminated": false,
-        "verboselogging": true
-    },
-    {
-        "id": "d086776c.7de82",
-        "type": "telegram bot",
-        "botname": "HeinzBot",
-        "usernames": "",
-        "chatids": "",
-        "baseapiurl": "",
-        "updatemode": "polling",
-        "pollinterval": "300",
-        "usesocks": false,
-        "sockshost": "",
-        "socksport": "6667",
-        "socksusername": "anonymous",
-        "sockspassword": "",
-        "bothost": "",
-        "localbotport": "8443",
-        "publicbotport": "8443",
-        "privatekey": "",
-        "certificate": "",
-        "useselfsignedcertificate": false,
-        "sslterminated": false,
-        "verboselogging": false
-    },
-    {
-        "id": "29235876.a28e58",
-        "type": "sqlitedb",
-        "db": "TelegramUsers",
-        "mode": "RWC"
-    },
-    {
         "id": "d40ead3e.334ab",
         "type": "ui_group",
         "name": "Group 1",
@@ -499,27 +244,6 @@
         "width": "5"
     },
     {
-        "id": "7fbc657b.28848c",
-        "type": "mongodb3",
-        "uri": "mongodb://localhost/cache-db",
-        "name": "MongoDB (cache-db)",
-        "options": "",
-        "parallelism": "-1"
-    },
-    {
-        "id": "e2a21528.907068",
-        "type": "Cache",
-        "name": "CACHE",
-        "defaultTtl": "0",
-        "checkPeriod": "0"
-    },
-    {
-        "id": "b1d09cdc.ad7a7",
-        "type": "sqlitedb",
-        "db": "TEST",
-        "mode": "RWC"
-    },
-    {
         "id": "62ad21f6.478228",
         "type": "ui_group",
         "name": "Kraken Prices",
@@ -554,6 +278,112 @@
         "order": 1,
         "disabled": false,
         "hidden": false
+    },
+    {
+        "id": "1460580e.155d28",
+        "type": "ui_group",
+        "name": "Check Balances",
+        "tab": "",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "cb0b3d69.08383",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Stellar UI",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 2
+            }
+        }
     },
     {
         "id": "3f309b45.9ef124",
@@ -2444,104 +2274,6 @@
         "wires": [
             [
                 "f1fffff8.61c3c"
-            ]
-        ]
-    },
-    {
-        "id": "c13323c0.6fffe",
-        "type": "switch",
-        "z": "811f43f8.3def3",
-        "name": "IF",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            },
-            {
-                "t": "null"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 490,
-        "y": 120,
-        "wires": [
-            [
-                "6ccff4fe.aa373c"
-            ],
-            [
-                "156cd322.53888d"
-            ]
-        ]
-    },
-    {
-        "id": "6ccff4fe.aa373c",
-        "type": "join",
-        "z": "811f43f8.3def3",
-        "name": "JOIN",
-        "mode": "custom",
-        "build": "string",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "5",
-        "count": "1",
-        "x": 910,
-        "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "31383373.101c2c",
-        "type": "mongodb3 in",
-        "z": "811f43f8.3def3",
-        "service": "_ext_",
-        "configNode": "7fbc657b.28848c",
-        "name": "Find value by key on MongoDB",
-        "collection": "cache-collection",
-        "operation": "findOne",
-        "x": 850,
-        "y": 260,
-        "wires": [
-            [
-                "ffefbc3a.485a7"
-            ]
-        ]
-    },
-    {
-        "id": "156cd322.53888d",
-        "type": "function",
-        "z": "811f43f8.3def3",
-        "name": "QUERY",
-        "func": "msg.payload = { key : msg.topic };\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 600,
-        "y": 260,
-        "wires": [
-            [
-                "31383373.101c2c"
-            ]
-        ]
-    },
-    {
-        "id": "ffefbc3a.485a7",
-        "type": "function",
-        "z": "811f43f8.3def3",
-        "name": "RESPONSE",
-        "func": "msg.payload = msg.payload.value;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1090,
-        "y": 260,
-        "wires": [
-            [
-                "6ccff4fe.aa373c"
             ]
         ]
     },
