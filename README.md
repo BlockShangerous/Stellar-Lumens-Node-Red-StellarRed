@@ -1,4 +1,4 @@
-# Stellar-Lumens-Node-Red
+# Stellar-Lumens-Node-Red-StellarRed
 A node red node for interacting with the Stellar Lumens Horizon API
 
 Connects with Stellar Horizon API to interact with the blockchain
