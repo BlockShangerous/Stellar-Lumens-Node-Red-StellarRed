@@ -5,6 +5,12 @@ Connects with Stellar Horizon API to interact with the blockchain
 
 Currently on Testnet
 
+
+
+THIS IS AN EXPERIMENTAL BETA. IF YOU CHOOSE TO USE IT ON MAINNET YOU DO SO AT YOUR OWN RISK. BE CAREFUL. THIS IS NOT READY FOR MAINNET DEPLOYMENT. YOU'VE BEEN WARNED.
+
+
+
 This flow builds a UI that can:
 
 Generate keypairs
