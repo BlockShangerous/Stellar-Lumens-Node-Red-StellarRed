@@ -1,5 +1,5 @@
 # Stellar-Lumens-Node-Red-StellarRed
-A node red flow for interacting with the Stellar Lumens Horizon API
+Node red flows for interacting with the Stellar Lumens Horizon API
 
 Connects with Stellar Horizon API to interact with the blockchain
 
@@ -11,7 +11,7 @@ THIS IS AN EXPERIMENTAL BETA. IF YOU CHOOSE TO USE IT ON MAINNET YOU DO SO AT YO
 
 
 
-This flow builds a UI that can:
+These flows build UIs that can:
 
 Generate keypairs
 
@@ -31,6 +31,8 @@ Check Kraken Prices
 
 4-28-21 - NFT Generator
 
-If you are already familiar with NodeRed all you need to do to make this flow work is add the following two lines to the functionGlobalContext of your settings.js file, typically located in /home/pi/.node-red stellarsdk:require(“stellar-sdk”), nodefetch:require(“node-fetch”)
+If you are already familiar with NodeRed all you need to do to make this flow work is add the following two lines to the functionGlobalContext of your settings.js file, typically located in /home/pi/.node-red 
+stellarsdk:require(“stellar-sdk”), 
+nodefetch:require(“node-fetch”)
 
 https://blockshangerous.com/2021/03/23/getting-started-with-stellarred/
