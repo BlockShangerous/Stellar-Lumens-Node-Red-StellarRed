@@ -1,0 +1,577 @@
+[
+    {
+        "id": "7dd6660f.e835e8",
+        "type": "tab",
+        "label": "NFT TOML Generator",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8e58f2f8.fb524",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "Asset Code",
+        "label": "Asset Code",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 350,
+        "y": 80,
+        "wires": [
+            [
+                "25496ac8.dcc7d6"
+            ]
+        ]
+    },
+    {
+        "id": "2e95e494.c6e58c",
+        "type": "ui_text",
+        "z": "7dd6660f.e835e8",
+        "group": "206fda83.d44196",
+        "order": 1,
+        "width": 6,
+        "height": 8,
+        "name": "TOML",
+        "label": "TOML",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 810,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "25496ac8.dcc7d6",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "code",
+        "func": "var code = msg.payload\nflow.set('code',code);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 530,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "11011d4f.d5feb3",
+        "type": "ui_button",
+        "z": "7dd6660f.e835e8",
+        "name": "Generate TOML",
+        "group": "d056479a.01bde8",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Generate TOML",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 160,
+        "y": 600,
+        "wires": [
+            [
+                "bf824d52.c80c"
+            ]
+        ]
+    },
+    {
+        "id": "cbddb6eb.997298",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "00",
+        "func": "var code = flow.get('code',code);\nvar issuer = flow.get('issuer',issuer);\nvar decimals = flow.get('decimals',decimals);\nvar anchored = flow.get('anchored',anchored);\nvar name = flow.get('name',name);\nvar desc = flow.get('desc',desc);\nvar conditions = flow.get('conditions',conditions);\nvar image = flow.get('image',image);\nvar count = flow.get('count',count);\n\nmsg.payload=msg.payload+\"\\n\\n[[CURRENCIES]]\\n\"+'code=\"'+code+count+'\"\\n'+'issuer=\"'+issuer+'\"\\n'+'display_decimals='+decimals+'\\n'+\"is_asset_anchored=\"+anchored+'\\n'+'name=\"'+name+'\"\\n'+'desc=\"'+desc+' edition#'+count+'\"\\n'+'conditions=\"'+conditions+'\"\\n'+'image=\"'+image+'\"'\n//msg.payload=msg.payload+'code=\"'+code+'\"'+'issuer=\"'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 620,
+        "y": 600,
+        "wires": [
+            [
+                "2e95e494.c6e58c",
+                "2ba0e884.d5b8e8"
+            ]
+        ]
+    },
+    {
+        "id": "e741d3.a8f72e3",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "issuer",
+        "label": "issuer",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "6f8e3a4c.a02434"
+            ]
+        ]
+    },
+    {
+        "id": "6f8e3a4c.a02434",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "issuer",
+        "func": "var issuer = msg.payload\nflow.set('issuer',issuer);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 530,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec3fb106.c1bab",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "decimals",
+        "label": "decimals",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "e99b72d4.6bd58"
+            ]
+        ]
+    },
+    {
+        "id": "e99b72d4.6bd58",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "decimals",
+        "func": "var decimals = msg.payload\nflow.set('decimals',decimals);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ba0e884.d5b8e8",
+        "type": "debug",
+        "z": "7dd6660f.e835e8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "dbc4355e.e19a78",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "anchored",
+        "label": "anchored",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "2f4afc53.0fcad4"
+            ]
+        ]
+    },
+    {
+        "id": "2f4afc53.0fcad4",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "anchored",
+        "func": "var anchored = msg.payload\nflow.set('anchored',anchored);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f65a96ce.d75f48",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "name",
+        "label": "name",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "827e48b7.5a1ee8"
+            ]
+        ]
+    },
+    {
+        "id": "827e48b7.5a1ee8",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "issuer",
+        "func": "var name = msg.payload\nflow.set('name',name);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 530,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b396ed8f.b07c9",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "desc",
+        "label": "desc",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 330,
+        "y": 280,
+        "wires": [
+            [
+                "94f61f4a.a84f3"
+            ]
+        ]
+    },
+    {
+        "id": "94f61f4a.a84f3",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "decimals",
+        "func": "var desc = msg.payload\nflow.set('desc',desc);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fd8e8c5a.c5386",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "conditions",
+        "label": "conditions",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "e2e0d121.a5d7c"
+            ]
+        ]
+    },
+    {
+        "id": "e2e0d121.a5d7c",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "issuer",
+        "func": "var conditions = msg.payload\nflow.set('conditions',conditions);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 530,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76c80ad3.d5e834",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "image",
+        "label": "image",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "947baa01.11fc48"
+            ]
+        ]
+    },
+    {
+        "id": "947baa01.11fc48",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "decimals",
+        "func": "var image = msg.payload\nflow.set('image',image);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25719890.b1a758",
+        "type": "ui_text_input",
+        "z": "7dd6660f.e835e8",
+        "name": "quantity",
+        "label": "quantity",
+        "tooltip": "",
+        "group": "d056479a.01bde8",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 340,
+        "y": 400,
+        "wires": [
+            [
+                "d9b0176c.9af988"
+            ]
+        ]
+    },
+    {
+        "id": "d9b0176c.9af988",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "quantity",
+        "func": "var quantity = msg.payload\nflow.set('quantity',quantity);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46cc08c1.10a178",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "",
+        "func": "var code = flow.get('code',code);\nvar issuer = flow.get('issuer',issuer);\nvar decimals = flow.get('decimals',decimals);\nvar anchored = flow.get('anchored',anchored);\nvar name = flow.get('name',name);\nvar desc = flow.get('desc',desc);\nvar conditions = flow.get('conditions',conditions);\nvar image = flow.get('image',image);\n\nmsg.payload=\"[[CURRENCIES]]\\n\"+'code=\"'+code+'\"\\n'+'issuer=\"'+issuer+'\"\\n'+'decimals='+decimals+'\\n'+\"anchored=\"+anchored+'\\n'+'name=\"'+name+'\"\\n'+'desc=\"'+desc+'\"\\n'+'conditions=\"'+conditions+'\"\\n'+'image=\"'+image+'\"'\n//msg.payload=msg.payload+'code=\"'+code+'\"'+'issuer=\"'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 640,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9365ec1.7dfb4",
+        "type": "switch",
+        "z": "7dd6660f.e835e8",
+        "name": "count",
+        "property": "count",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 470,
+        "y": 660,
+        "wires": [
+            [
+                "cbddb6eb.997298"
+            ],
+            [
+                "a3f3e243.16201"
+            ]
+        ]
+    },
+    {
+        "id": "fd5e2bcf.dc21e8",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "count-1",
+        "func": "var count=flow.get('count',count)\ncount= count-1\n\nflow.set('count',count)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 780,
+        "wires": [
+            [
+                "a9365ec1.7dfb4"
+            ]
+        ]
+    },
+    {
+        "id": "bf824d52.c80c",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "setup count",
+        "func": "var count = flow.get('quantity',count);\nflow.set('count',count);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 340,
+        "y": 600,
+        "wires": [
+            [
+                "a9365ec1.7dfb4"
+            ]
+        ]
+    },
+    {
+        "id": "a3f3e243.16201",
+        "type": "function",
+        "z": "7dd6660f.e835e8",
+        "name": "",
+        "func": "var code = flow.get('code',code);\nvar issuer = flow.get('issuer',issuer);\nvar decimals = flow.get('decimals',decimals);\nvar anchored = flow.get('anchored',anchored);\nvar name = flow.get('name',name);\nvar desc = flow.get('desc',desc);\nvar conditions = flow.get('conditions',conditions);\nvar image = flow.get('image',image);\nvar count = flow.get('count',count);\n\nmsg.payload=msg.payload+\"\\n\\n\\n[[CURRENCIES]]\\n\\n\"+'code=\"'+code+count+'\"\\n\\n'+'issuer=\"'+issuer+'\"\\n\\n'+'display_decimals='+decimals+'\\n\\n'+\"is_asset_anchored=\"+anchored+'\\n\\n'+'name=\"'+name+'\"\\n\\n'+'desc=\"'+desc+' edition#'+count+'\"\\n\\n'+'conditions=\"'+conditions+'\"\\n\\n'+'image=\"'+image+'\"'\n//msg.payload=msg.payload+'code=\"'+code+'\"'+'issuer=\"'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 600,
+        "y": 680,
+        "wires": [
+            [
+                "fd5e2bcf.dc21e8"
+            ]
+        ]
+    },
+    {
+        "id": "d056479a.01bde8",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "f24bc689.bae5a8",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "206fda83.d44196",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "f24bc689.bae5a8",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "f24bc689.bae5a8",
+        "type": "ui_tab",
+        "name": "NFT TOML Generator",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]
