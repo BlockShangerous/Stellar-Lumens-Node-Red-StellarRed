@@ -1832,6 +1832,407 @@
         ]
     },
     {
+        "id": "85337a8b.77ec28",
+        "type": "tab",
+        "label": "Monitor Testnet",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "dcdb506b.d454e",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "Monitor Account Example",
+        "func": "var StellarSdk = global.get(\"stellarsdk\");\nvar server = new StellarSdk.Server(\"https://horizon-testnet.stellar.org\");\nvar accountId = msg.payload.accountId;\n\n// Create an API call to query payments involving the account.\nvar payments = server.payments().forAccount(accountId);\n\n// If some payments have already been handled, start the results from the\n// last seen payment. (See below in `handlePayment` where it gets saved.)\nvar lastToken = loadLastPagingToken();\nif (lastToken) {\n  payments.cursor(lastToken);\n}\n\n// `stream` will send each recorded payment, one by one, then keep the\n// connection open and continue to send you new payments as they occur.\npayments.stream({\n  onmessage: function (payment) {\n    // Record the paging token so we can start from here next time.\n    savePagingToken(payment.paging_token);\n\n    // The payments stream includes both sent and received payments. We only\n    // want to process received payments here.\n    if (payment.to !== accountId) {\n      return;\n    }\n\n    // In Stellar’s API, Lumens are referred to as the “native” type. Other\n    // asset types have more detailed information.\n    var asset;\n    if (payment.asset_type === \"native\") {\n      asset = \"lumens\";\n    } else {\n      asset = payment.asset_code + \":\" + payment.asset_issuer;\n    }\n    //console.log(payment.amount + \" \" + asset + \" from \" + payment.from);\n    msg.payload={\"amount\":payment.amount,\"asset\":asset,\"payment.from\":payment.from}\n    node.send(msg)\n  },\n\n  onerror: function (error) {\n    console.error(\"Error in payment stream\");\n  },\n});\n\nfunction savePagingToken(token) {\n  // In most cases, you should save this to a local database or file so that\n  // you can load it next time you stream new payments.\n}\n\nfunction loadLastPagingToken() {\n  // Get the last paging token from a local database or file\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 410,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c85b0af0.4366d8",
+        "type": "inject",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "{\"accountId\":\"GD5LYKVQZYHDNJ3QTEDX3EBF5XK3W5NADGTBT5KLD276OPP7YKDIQIBZ\"}",
+                "vt": "json"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"accountId\":\"GD5LYKVQZYHDNJ3QTEDX3EBF5XK3W5NADGTBT5KLD276OPP7YKDIQIBZ\"}",
+        "payloadType": "json",
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "dcdb506b.d454e"
+            ]
+        ]
+    },
+    {
+        "id": "8baef33e.d198b",
+        "type": "comment",
+        "z": "85337a8b.77ec28",
+        "name": "Received payment",
+        "info": "",
+        "x": 380,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "2078c0c7.f9b8e",
+        "type": "ui_text",
+        "z": "85337a8b.77ec28",
+        "group": "1f563092.450a6f",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "Payment Received",
+        "label": "Payment Received",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 670,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6492839f.25387c",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "Monitor Account",
+        "func": "var StellarSdk = global.get(\"stellarsdk\");\nvar server = new StellarSdk.Server(\"https://horizon-testnet.stellar.org\");\nvar accountId = msg.payload;\nflow.set('accountId',accountId);\n\n\n// Create an API call to query payments involving the account.\nvar payments = server.payments().forAccount(accountId);\n\n// If some payments have already been handled, start the results from the\n// last seen payment. (See below in `handlePayment` where it gets saved.)\nvar lastToken = loadLastPagingToken();\nif (lastToken) {\n  payments.cursor(lastToken);\n}\n\n// `stream` will send each recorded payment, one by one, then keep the\n// connection open and continue to send you new payments as they occur.\npayments.stream({\n  onmessage: function (payment) {\n    // Record the paging token so we can start from here next time.\n    savePagingToken(payment.paging_token);\n\n    // The payments stream includes both sent and received payments. We only\n    // want to process received payments here.\n    if (payment.to !== accountId) {\n      return;\n    }\n\n    // In Stellar’s API, Lumens are referred to as the “native” type. Other\n    // asset types have more detailed information.\n    var asset;\n    if (payment.asset_type === \"native\") {\n      asset = \"lumens\";\n    } else {\n      asset = payment.asset_code;\n    }\n    console.log(payment.amount + \" \" + asset + \" from \" + payment.from);\n    msg.payload=\"amount: \"+payment.amount+\" asset: \"+asset+\" payment from: \"+payment.from\n    node.send(msg)\n  },\n\n  onerror: function (error) {\n    console.error(\"Error in payment stream\");\n  },\n});\n\nfunction savePagingToken(token) {\n  // In most cases, you should save this to a local database or file so that\n  // you can load it next time you stream new payments.\n  flow.set('lastToken',lastToken)\n}\n\nfunction loadLastPagingToken() {\n  // Get the last paging token from a local database or file\n  flow.get('lastToken',lastToken)\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is deployed.\nvar lastToken\nflow.set('lastToken',lastToken)",
+        "finalize": "",
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "2078c0c7.f9b8e"
+            ]
+        ]
+    },
+    {
+        "id": "fded4172.10534",
+        "type": "ui_text_input",
+        "z": "85337a8b.77ec28",
+        "name": "Public Key",
+        "label": "Public Key to Monitor",
+        "tooltip": "",
+        "group": "1f563092.450a6f",
+        "order": 6,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "",
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "6492839f.25387c",
+                "de8a3890.0ce388"
+            ]
+        ]
+    },
+    {
+        "id": "de8a3890.0ce388",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "Monitor Account",
+        "func": "var StellarSdk = global.get(\"stellarsdk\");\nvar server = new StellarSdk.Server(\"https://horizon-testnet.stellar.org\");\nvar accountId = msg.payload;\nflow.set('accountId',accountId);\nvar sender = 0;\nvar type = 0;\nvar amount_rec = 0;\n\n    \n// Create an API call to query payments involving the account.\nvar payments = server.payments().forAccount(accountId);\n\n// If some payments have already been handled, start the results from the\n// last seen payment. (See below in `handlePayment` where it gets saved.)\nvar lastToken = loadLastPagingToken();\nif (lastToken) {\n  payments.cursor(lastToken);\n}\n\n// `stream` will send each recorded payment, one by one, then keep the\n// connection open and continue to send you new payments as they occur.\npayments.stream({\n  onmessage: function (payment) {\n    // Record the paging token so we can start from here next time.\n    savePagingToken(payment.paging_token);\n\n    // The payments stream includes both sent and received payments. We only\n    // want to process received payments here.\n    if (payment.to !== accountId) {\n      return;\n    }\n\n    // In Stellar’s API, Lumens are referred to as the “native” type. Other\n    // asset types have more detailed information.\n    var asset;\n    if (payment.asset_type === \"native\") {\n      asset = \"lumens\";\n    } else {\n      asset = payment.asset_code;\n    }\n    //console.log(payment.amount + \" \" + asset + \" from \" + payment.from);\n    msg.payload=\"amount: \"+payment.amount+\" asset: \"+asset+\" payment from: \"+payment.from\n    sender = payment.from;\n    type = asset;\n    amount_rec = payment.amount;\n    flow.set('sender',sender);\n    flow.set('type',type);\n    flow.set('amount_rec',amount_rec);\n    node.send(msg)\n    //node.send(msg.payload)\n  },\n\n\n\n  onerror: function (error) {\n    console.error(\"Error in payment stream\");\n  },\n});\n\nfunction savePagingToken(token) {\n  // In most cases, you should save this to a local database or file so that\n  // you can load it next time you stream new payments.\n}\n\nfunction loadLastPagingToken() {\n  // Get the last paging token from a local database or file\n}\n\n//return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 444,
+        "wires": [
+            [
+                "40262ecb.e69ff"
+            ]
+        ]
+    },
+    {
+        "id": "fb3f67b0.b4e028",
+        "type": "ui_toast",
+        "z": "85337a8b.77ec28",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 1070,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "40262ecb.e69ff",
+        "type": "switch",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "property": "type",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "TRRT",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lumens",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 460,
+        "wires": [
+            [
+                "aa2e4422.c47338",
+                "82cfc6e0.b58de8"
+            ],
+            [
+                "5cda4d0e.738d14",
+                "f26b1e9a.f2607",
+                "9fac8537.31f928"
+            ]
+        ]
+    },
+    {
+        "id": "aa2e4422.c47338",
+        "type": "debug",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "58fdd566.92976c",
+        "type": "comment",
+        "z": "85337a8b.77ec28",
+        "name": "Received payment response",
+        "info": "",
+        "x": 660,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "82cfc6e0.b58de8",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "func": "var amount_rec = flow.get('amount_rec',amount_rec);\n\nmsg.payload = \"Thanks for the \"+amount_rec+\" TRRT!\"\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 840,
+        "y": 460,
+        "wires": [
+            [
+                "fb3f67b0.b4e028"
+            ]
+        ]
+    },
+    {
+        "id": "5cda4d0e.738d14",
+        "type": "debug",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "c7b80c33.94197",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "func": "var amount_rec = flow.get('amount_rec',amount_rec);\n\nmsg.payload = \"Returning your \"+amount_rec+\" XLM\"\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 780,
+        "y": 720,
+        "wires": [
+            [
+                "5cda4d0e.738d14",
+                "fb3f67b0.b4e028"
+            ]
+        ]
+    },
+    {
+        "id": "2acbba72.0ed566",
+        "type": "inject",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sourceKeys\":\"SBSZQMYX2EAT6MGDOAJ3OONFHT6TVVWLLAZEESRIQ7G3CYLHTCWTC3UX\",\"destinationId\":\"GD5LYKVQZYHDNJ3QTEDX3EBF5XK3W5NADGTBT5KLD276OPP7YKDIQIBZ\"}",
+        "payloadType": "json",
+        "x": 490,
+        "y": 760,
+        "wires": [
+            [
+                "f6af4b2b.aeaf28"
+            ]
+        ]
+    },
+    {
+        "id": "49b66fc9.50b7c",
+        "type": "debug",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1070,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "f6af4b2b.aeaf28",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "Submit XLM Transaction",
+        "func": "var StellarSdk = global.get(\"stellarsdk\");\nvar server = new StellarSdk.Server(\"https://horizon-testnet.stellar.org\");\nvar secret = \"SATY6XOPDHWSMPTYICPDKQEEHNRSDFLM472AKDYYIBJVZFLSYHKHSY7F\";\nvar sender=flow.get('sender',sender);\nvar dest = sender;\nvar amount_rec=flow.get('amount_rec',amount_rec);\nvar quantxlm = amount_rec;\n//var quantxlm = \"69\";\n//var asset = flow.get('asset',asset);\n//var assetiss = flow.get('assetiss',assetiss);\nvar memo = \"Autoreply from TRRTbot\";\n\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secret);\nvar destinationId = dest;\n// Transaction will hold a built transaction we can resubmit if the result is unknown.\nvar transaction;\n\n// First, check to make sure that the destination account exists.\n// You could skip this, but if the account does not exist, you will be charged\n// the transaction fee when the transaction fails.\nserver\n  .loadAccount(destinationId)\n  // If the account is not found, surface a nicer error message for logging.\n  .catch(function (error) {\n    if (error instanceof StellarSdk.NotFoundError) {\n      throw new Error(\"The destination account does not exist!\");\n    } else return error;\n  })\n  // If there was no error, load up-to-date information on your account.\n  .then(function () {\n    return server.loadAccount(sourceKeys.publicKey());\n  })\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = new StellarSdk.TransactionBuilder(sourceAccount, {\n      fee: StellarSdk.BASE_FEE,\n      networkPassphrase: StellarSdk.Networks.TESTNET,\n    })\n      .addOperation(\n        StellarSdk.Operation.payment({\n          destination: destinationId,\n          // Because Stellar allows transaction in many currencies, you must\n          // specify the asset type. The special \"native\" asset represents Lumens.\n          asset: StellarSdk.Asset.native(),\n          //asset: new StellarSdk.Asset(asset,assetiss),\n          amount: quantxlm,\n        }),\n      )\n      // A memo allows you to add your own metadata to a transaction. It's\n      // optional and does not affect how Stellar treats the transaction.\n      .addMemo(StellarSdk.Memo.text(memo))\n      // Wait a maximum of three minutes for the transaction\n      .setTimeout(180)\n      .build();\n    // Sign the transaction to prove you are actually the person sending it.\n    transaction.sign(sourceKeys);\n    // And finally, send it off to Stellar!\n    return server.submitTransaction(transaction);\n  })\n  .then(function (result) {\n    console.log(\"Success! Results:\", result);\n    msg.payload=\"Success\"+\" https://stellar.expert/explorer/testnet/account/\"+sourceKeys.publicKey();\n    node.send(msg);\n  })\n  .catch(function (error) {\n    console.error(\"Something went wrong!\", error);\n    // If the result is unknown (no response body, timeout etc.) we simply resubmit\n    // already built transaction:\n    // server.submitTransaction(transaction);\n  });",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 730,
+        "y": 760,
+        "wires": [
+            [
+                "49b66fc9.50b7c"
+            ]
+        ]
+    },
+    {
+        "id": "f26b1e9a.f2607",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "Submit Token Transaction",
+        "func": "var StellarSdk = global.get(\"stellarsdk\");\nvar server = new StellarSdk.Server(\"https://horizon-testnet.stellar.org\");\nvar secret = \"SATY6XOPDHWSMPTYICPDKQEEHNRSDFLM472AKDYYIBJVZFLSYHKHSY7F\";\nvar sender=flow.get('sender',sender);\nvar dest = sender;\nvar amount_rec=flow.get('amount_rec',amount_rec);\nvar quant = amount_rec;\nvar memo = \"Autoreply from TRRTbot\";\nvar asset = \"TRRT\";\nvar assetiss = \"GD5AC55INRNAEJQ5WNDTEJBEAYJWE36WNDRDFGVZ4JUIO3I2U5BK3PZQ\";\n\n\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secret);\nvar destinationId = dest;\n// Transaction will hold a built transaction we can resubmit if the result is unknown.\nvar transaction;\n\n// First, check to make sure that the destination account exists.\n// You could skip this, but if the account does not exist, you will be charged\n// the transaction fee when the transaction fails.\nserver\n  .loadAccount(destinationId)\n  // If the account is not found, surface a nicer error message for logging.\n  .catch(function (error) {\n    if (error instanceof StellarSdk.NotFoundError) {\n      throw new Error(\"The destination account does not exist!\");\n    } else return error;\n  })\n  // If there was no error, load up-to-date information on your account.\n  .then(function () {\n    return server.loadAccount(sourceKeys.publicKey());\n  })\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = new StellarSdk.TransactionBuilder(sourceAccount, {\n      fee: StellarSdk.BASE_FEE,\n      networkPassphrase: StellarSdk.Networks.TESTNET,\n    })\n      .addOperation(\n        StellarSdk.Operation.payment({\n          destination: destinationId,\n          // Because Stellar allows transaction in many currencies, you must\n          // specify the asset type. The special \"native\" asset represents Lumens.\n          //asset: StellarSdk.Asset.native(),\n          asset: new StellarSdk.Asset(asset,assetiss),\n          amount: quant,\n        }),\n      )\n      // A memo allows you to add your own metadata to a transaction. It's\n      // optional and does not affect how Stellar treats the transaction.\n      .addMemo(StellarSdk.Memo.text(memo))\n      // Wait a maximum of three minutes for the transaction\n      .setTimeout(180)\n      .build();\n    // Sign the transaction to prove you are actually the person sending it.\n    transaction.sign(sourceKeys);\n    // And finally, send it off to Stellar!\n    return server.submitTransaction(transaction);\n  })\n  .then(function (result) {\n    console.log(\"Success! Results:\", result);\n    msg.payload=\"Success\"+\" https://stellar.expert/explorer/testnet/account/\"+sourceKeys.publicKey();\n    node.send(msg);\n  })\n  .catch(function (error) {\n    console.error(\"Something went wrong!\", error);\n    // If the result is unknown (no response body, timeout etc.) we simply resubmit\n    // already built transaction:\n    // server.submitTransaction(transaction);\n  });",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 770,
+        "y": 640,
+        "wires": [
+            [
+                "fb3f67b0.b4e028",
+                "5cda4d0e.738d14"
+            ]
+        ]
+    },
+    {
+        "id": "9fac8537.31f928",
+        "type": "function",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "func": "var amount_rec = flow.get('amount_rec',amount_rec);\n\nmsg.payload = \"Sending your \"+amount_rec+\" TRRT\"\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 820,
+        "y": 600,
+        "wires": [
+            [
+                "fb3f67b0.b4e028"
+            ]
+        ]
+    },
+    {
+        "id": "347d0dd.fdb38f2",
+        "type": "inject",
+        "z": "85337a8b.77ec28",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 510,
+        "y": 640,
+        "wires": [
+            [
+                "f26b1e9a.f2607"
+            ]
+        ]
+    },
+    {
         "id": "1f563092.450a6f",
         "type": "ui_group",
         "name": "Check Balances",
