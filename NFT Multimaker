@@ -1,0 +1,969 @@
+[
+    {
+        "id": "9ae7d6dd.0d8cc8",
+        "type": "tab",
+        "label": "NFT Multimaker",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7cc68034.80b66",
+        "type": "inject",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "props": [
+            {
+                "p": "secret",
+                "v": "SBSZQMYX2EAT6MGDOAJ3OONFHT6TVVWLLAZEESRIQ7G3CYLHTCWTC3UX",
+                "vt": "str"
+            },
+            {
+                "p": "name",
+                "v": "COOL",
+                "vt": "str"
+            },
+            {
+                "p": "iss",
+                "v": "GBN5VTPXODILAQTMMB23ML5B7RKF657YXXALLWFKGZPSW53QGR6OUG4L",
+                "vt": "str"
+            },
+            {
+                "p": "op",
+                "v": "changeTrust",
+                "vt": "str"
+            },
+            {
+                "p": "dest",
+                "v": "GAC4LTCWBQAVRNXP67QMT55KZ3BIYPVMLIC46FYSO6HN2ZFZLFKW5WJX",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "c05795f7.439c38"
+            ]
+        ]
+    },
+    {
+        "id": "494b6d9d.a6c134",
+        "type": "comment",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Create Multiple NFTs",
+        "info": "",
+        "x": 350,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "36b57c07.3a6174",
+        "type": "ui_button",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Create NFTs",
+        "group": "8d9479b0.c2e3b8",
+        "order": 7,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Create NFTs",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "8fabd323.bbf3c",
+                "ba3f7c31.73156"
+            ]
+        ]
+    },
+    {
+        "id": "1b8d56c9.cb63e9",
+        "type": "ui_text_input",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Asset - Name",
+        "label": "Asset - Name",
+        "tooltip": "",
+        "group": "8d9479b0.c2e3b8",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 1180,
+        "y": 940,
+        "wires": [
+            [
+                "d96eafa2.323e"
+            ]
+        ]
+    },
+    {
+        "id": "854704b.d043bf8",
+        "type": "ui_text_input",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Amount",
+        "label": "Amount (max 30)",
+        "tooltip": "",
+        "group": "8d9479b0.c2e3b8",
+        "order": 5,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 1160,
+        "y": 1060,
+        "wires": [
+            [
+                "8b18bc6.68a524"
+            ]
+        ]
+    },
+    {
+        "id": "69854ef5.4f3de",
+        "type": "ui_text_input",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Secret Key - Origin",
+        "label": "Secret Key - Origin",
+        "tooltip": "",
+        "group": "8d9479b0.c2e3b8",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 1190,
+        "y": 900,
+        "wires": [
+            [
+                "3367fa33.176086"
+            ]
+        ]
+    },
+    {
+        "id": "fb475935.316798",
+        "type": "ui_text_input",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Data",
+        "label": "Data (IPFS CID)",
+        "tooltip": "",
+        "group": "8d9479b0.c2e3b8",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 1150,
+        "y": 980,
+        "wires": [
+            [
+                "f32c24c3.e9c888"
+            ]
+        ]
+    },
+    {
+        "id": "f32c24c3.e9c888",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "data",
+        "func": "var data = msg.payload\nflow.set('data',data);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1390,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d96eafa2.323e",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "asset",
+        "func": "var asset = msg.payload\nflow.set('asset',asset);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1390,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3367fa33.176086",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "secretdist",
+        "func": "var secretdist = msg.payload\nflow.set('secretdist',secretdist);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1400,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8b18bc6.68a524",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "count",
+        "func": "var count = msg.payload\nflow.set('count',count);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1390,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c05795f7.439c38",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Setup StellarSDK flow.transaction \\n fund new keypair",
+        "func": "var StellarSdk = global.get(\"stellarsdk\");\nvar server = new StellarSdk.Server(\"https://horizon-testnet.stellar.org\");\n\nvar asset = flow.get('asset',asset)\n\n//var op = msg.op\nflow.set('StellarSdk',StellarSdk);\nflow.set('server',server);\n//node.send(msg)\n\nconst pair = StellarSdk.Keypair.random();\nmsg.secret=pair.secret();\nmsg.public=pair.publicKey();\n\nvar secretiss = msg.secret;\nvar assetiss = msg.public\nflow.set('assetiss',assetiss)\n\nvar secretdist = flow.get('secretdist',secretdist);\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretdist);\n\n\nvar transaction;\n\n//node.send(msg)\n\nserver\n  .loadAccount(sourceKeys.publicKey())\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = new StellarSdk.TransactionBuilder(sourceAccount, {\n      fee: StellarSdk.BASE_FEE,\n      networkPassphrase: StellarSdk.Networks.TESTNET,\n    })\n      .addOperation(\n        StellarSdk.Operation.createAccount({\n          destination: msg.public,\n          startingBalance: \"1.5\",\n          source: sourceKeys.publicKey()\n        }),\n      )\n      \n      flow.set('transaction',transaction);\n      node.send(msg)\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "df7cc11d.3dfcd",
+                "c034165e.712cc8"
+            ]
+        ]
+    },
+    {
+        "id": "de59862d.a19f28",
+        "type": "ui_text",
+        "z": "9ae7d6dd.0d8cc8",
+        "group": "8d9479b0.c2e3b8",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "name": "Success text display",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1340,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8fabd323.bbf3c",
+        "type": "change",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Status Update",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Building NFTs",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 520,
+        "wires": [
+            [
+                "de59862d.a19f28"
+            ]
+        ]
+    },
+    {
+        "id": "df7cc11d.3dfcd",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "add trust",
+        "func": "var StellarSdk = flow.get(\"StellarSdk\");\nvar server = flow.get('server',server);\nvar secretdist = flow.get('secretdist',secretdist);\nvar asset = flow.get('asset',asset)\nvar assetiss = msg.public\n//var op = msg.op\n//flow.set('StellarSDK',StellarSDK);\n//flow.set('server',server);\nvar count = flow.get('count',count)\n\nif (count<10){\n    count=\"0\"+count\n}\n\n/*if (count<100){\n    count=\"0\"+count\n}\n*/\nflow.set('count',count)\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretdist);\nvar transaction;\n\nserver\n  .loadAccount(sourceKeys.publicKey())\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = flow.get('transaction',transaction)\n    \n      .addOperation(\n        StellarSdk.Operation.changeTrust({\n          asset: new StellarSdk.Asset(asset+count,assetiss),\n          source: sourceKeys.publicKey()\n        }),\n      )\n      \n     flow.set('transaction',transaction);\n      node.send(msg)\n   // return server.submitTransaction(transaction);\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "518c7eba.793c",
+                "ed36461a.64d508"
+            ]
+        ]
+    },
+    {
+        "id": "bfd015a4.6c0748",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "sign and submit \\n add data+domain \\n lock account",
+        "func": "var StellarSdk = flow.get(\"StellarSdk\");\nvar server = flow.get('server',server);\nvar secretdist = flow.get('secretdist',secretdist);\nvar asset = flow.get('asset',asset)\nvar assetiss = flow.get('assetiss',assetiss)\n//var op = msg.op\n//flow.set('StellarSDK',StellarSDK);\n//flow.set('server',server);\nvar secretiss = msg.secret\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretiss);\nvar distKeys = StellarSdk.Keypair.fromSecret(secretdist);\nvar dist = distKeys.publicKey()\nvar transaction;\n\nvar data = flow.get('data',data)\nvar domain = flow.get('domain',domain)\n\nserver\n  .loadAccount(dist)\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = flow.get('transaction',transaction)\n    \n       .addOperation(\n        StellarSdk.Operation.manageData({\n          name: \"ipfs CID (base64)\",\n          value: data,\n          source: sourceKeys.publicKey()\n        }),\n      )\n      \n      .addOperation(\n        StellarSdk.Operation.setOptions({\n          masterWeight: \"0\",\n          homeDomain: domain,\n          setFlags: 0x4,\n          //setFlags: 0x4|\"1\",\n          //setFlags: AuthImmutableFlag\n          //setFlags: StellarSdk.AuthImmutableFlag\n          source: sourceKeys.publicKey()\n        }),\n      )\n      \n    //node.send(msg)\n      // A memo allows you to add your own metadata to a transaction. It's\n      // optional and does not affect how Stellar treats the transaction.\n      .addMemo(StellarSdk.Memo.text('NFT by RedHorizon'))\n      // Wait a maximum of three minutes for the transaction\n      .setTimeout(180)\n      .build();\n     // msg.xdr=transaction.toEnvelope().toXDR('base64')\n    //node.send(msg)\n    // Sign the transaction to prove you are actually the person sending it.\n    transaction.sign(sourceKeys);\n    transaction.sign(distKeys);\n    // And finally, send it off to Stellar!\n    msg.xdr=transaction.toEnvelope().toXDR('base64')\n    msg.payload=\"Submitting to Stellar\"\n    node.send(msg)\n    return server.submitTransaction(transaction);\n  })\n  .then(function (result) {\n    console.log(\"Success! Results:\", result);\n    msg.payload=\"Success\"+\" https://stellar.expert/explorer/testnet/account/\"+sourceKeys.publicKey();\n    node.send(msg);\n  })\n  .catch(function (error) {\n    msg.error=\"Something went wrong! \"+ error;\n    node.send(msg)\n    // If the result is unknown (no response body, timeout etc.) we simply resubmit\n    // already built transaction:\n    // server.submitTransaction(transaction);\n  });",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1110,
+        "y": 440,
+        "wires": [
+            [
+                "de59862d.a19f28",
+                "dc7cec58.04e1e"
+            ]
+        ]
+    },
+    {
+        "id": "518c7eba.793c",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "send token",
+        "func": "var StellarSdk = flow.get(\"StellarSdk\");\nvar server = flow.get('server',server);\nvar secretiss = msg.secret;\nvar asset = flow.get('asset',asset)\nvar assetiss = msg.public\n//var amount = flow.get('amount',amount)\n//var op = msg.op\n//flow.set('StellarSDK',StellarSDK);\n//flow.set('server',server);\nvar count = flow.get('count',count)\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretiss);\nvar transaction;\n\nvar secretdist = flow.get('secretdist',secretdist)\nvar distKeys = StellarSdk.Keypair.fromSecret(secretdist);\nvar dist = distKeys.publicKey()\n\nserver\n  .loadAccount(dist)\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = flow.get('transaction',transaction)\n    \n      .addOperation(\n        StellarSdk.Operation.payment({\n          destination: dist,\n          // Because Stellar allows transaction in many currencies, you must\n          // specify the asset type. The special \"native\" asset represents Lumens.\n          //asset: StellarSdk.Asset.native(),\n          asset: new StellarSdk.Asset(asset+count,assetiss),\n          amount: \".0000001\",\n          source: sourceKeys.publicKey()\n        }),\n      )\n      \n     flow.set('transaction',transaction);\n      node.send(msg)\n   // return server.submitTransaction(transaction);\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 850,
+        "y": 200,
+        "wires": [
+            [
+                "48a0dce9.2a3374",
+                "e862b209.ae8cc"
+            ]
+        ]
+    },
+    {
+        "id": "18aae072.6534",
+        "type": "switch",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "count",
+        "property": "count",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "00",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "00",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 930,
+        "y": 360,
+        "wires": [
+            [
+                "907c516f.e2d3e",
+                "8c6546ec.478878"
+            ],
+            [
+                "bfd015a4.6c0748"
+            ]
+        ]
+    },
+    {
+        "id": "907c516f.e2d3e",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "count-1",
+        "func": "var count=flow.get('count',count)\ncount= count-1\n\nflow.set('count',count)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1100,
+        "y": 360,
+        "wires": [
+            [
+                "df7cc11d.3dfcd",
+                "759174be.cd1b1c"
+            ]
+        ]
+    },
+    {
+        "id": "3d056305.445dbc",
+        "type": "ui_text_input",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Sell Price",
+        "label": "Sell Price /XLM (max 5)",
+        "tooltip": "",
+        "group": "8d9479b0.c2e3b8",
+        "order": 6,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 1160,
+        "y": 1100,
+        "wires": [
+            [
+                "5dc2677.609d298"
+            ]
+        ]
+    },
+    {
+        "id": "5dc2677.609d298",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "price",
+        "func": "var price = msg.payload*10000000\nflow.set('price',price);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1390,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d6437f8.ee3fd8",
+        "type": "ui_text_input",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "domain",
+        "label": "Home domain (no https://www.)",
+        "tooltip": "",
+        "group": "8d9479b0.c2e3b8",
+        "order": 4,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "mode": "text",
+        "delay": "300",
+        "topic": "",
+        "topicType": "str",
+        "x": 1160,
+        "y": 1020,
+        "wires": [
+            [
+                "a1e53bae.c49498"
+            ]
+        ]
+    },
+    {
+        "id": "a1e53bae.c49498",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "domain",
+        "func": "var domain = msg.payload\nflow.set('domain',domain);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1400,
+        "y": 1020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "759174be.cd1b1c",
+        "type": "change",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "count",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 460,
+        "wires": [
+            [
+                "de59862d.a19f28"
+            ]
+        ]
+    },
+    {
+        "id": "1b97bf95.1e7f4",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "sell offer",
+        "func": "var StellarSdk = flow.get(\"StellarSdk\");\nvar server = flow.get('server',server);\nvar secretiss = msg.secret;\nvar asset = flow.get('asset',asset)\nvar assetiss = msg.public\n//var amount = flow.get('amount',amount)\n//var op = msg.op\n//flow.set('StellarSDK',StellarSDK);\n//flow.set('server',server);\nvar count = flow.get('count',count)\nvar price = flow.get('price',price)\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretiss);\nvar transaction;\n\nvar secretdist = flow.get('secretdist',secretdist)\nvar distKeys = StellarSdk.Keypair.fromSecret(secretdist);\nvar dist = distKeys.publicKey()\n\nserver\n  .loadAccount(dist)\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = flow.get('transaction',transaction)\n    \n        .addOperation(\n        StellarSdk.Operation.manageSellOffer({\n            selling: new StellarSdk.Asset(asset+count,assetiss),\n            buying: StellarSdk.Asset.native(),\n            amount: \".0000001\",\n            price: price,\n            source: distKeys.publicKey()\n     }),\n      )\n      \n     flow.set('transaction',transaction);\n      node.send(msg)\n   // return server.submitTransaction(transaction);\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1260,
+        "y": 280,
+        "wires": [
+            [
+                "18aae072.6534",
+                "13fd3a28.66f666"
+            ]
+        ]
+    },
+    {
+        "id": "d97c4e6e.bbad5",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "sell offer",
+        "func": "var StellarSdk = flow.get(\"StellarSdk\");\nvar server = flow.get('server',server);\nvar secretiss = msg.secret;\nvar asset = flow.get('asset',asset)\nvar assetiss = msg.public\n//var amount = flow.get('amount',amount)\n//var op = msg.op\n//flow.set('StellarSDK',StellarSDK);\n//flow.set('server',server);\nvar count = flow.get('count',count)\nvar price = flow.get('price',price)\nprice=price*40\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretiss);\nvar transaction;\n\nvar secretdist = flow.get('secretdist',secretdist)\nvar distKeys = StellarSdk.Keypair.fromSecret(secretdist);\nvar dist = distKeys.publicKey()\n\nserver\n  .loadAccount(dist)\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = flow.get('transaction',transaction)\n    \n        .addOperation(\n        StellarSdk.Operation.manageSellOffer({\n            selling: new StellarSdk.Asset(asset+count,assetiss),\n            buying: StellarSdk.Asset.native(),\n            amount: \".0000001\",\n            price: price,\n            source: distKeys.publicKey()\n     }),\n      )\n      \n     flow.set('transaction',transaction);\n      node.send(msg)\n   // return server.submitTransaction(transaction);\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1260,
+        "y": 160,
+        "wires": [
+            [
+                "18aae072.6534",
+                "423bfbfe.7d03b4"
+            ]
+        ]
+    },
+    {
+        "id": "b1b47223.3c24e",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "sell offer",
+        "func": "var StellarSdk = flow.get(\"StellarSdk\");\nvar server = flow.get('server',server);\nvar secretiss = msg.secret;\nvar asset = flow.get('asset',asset)\nvar assetiss = msg.public\n//var amount = flow.get('amount',amount)\n//var op = msg.op\n//flow.set('StellarSDK',StellarSDK);\n//flow.set('server',server);\nvar count = flow.get('count',count)\nvar price = flow.get('price',price)\nprice=price*10\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretiss);\nvar transaction;\n\nvar secretdist = flow.get('secretdist',secretdist)\nvar distKeys = StellarSdk.Keypair.fromSecret(secretdist);\nvar dist = distKeys.publicKey()\n\nserver\n  .loadAccount(dist)\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = flow.get('transaction',transaction)\n    \n        .addOperation(\n        StellarSdk.Operation.manageSellOffer({\n            selling: new StellarSdk.Asset(asset+count,assetiss),\n            buying: StellarSdk.Asset.native(),\n            amount: \".0000001\",\n            price: price,\n            source: distKeys.publicKey()\n     }),\n      )\n      \n     flow.set('transaction',transaction);\n      node.send(msg)\n   // return server.submitTransaction(transaction);\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1260,
+        "y": 200,
+        "wires": [
+            [
+                "18aae072.6534",
+                "f001f6f.dec0e08"
+            ]
+        ]
+    },
+    {
+        "id": "8d2dda8a.c16a58",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "sell offer",
+        "func": "var StellarSdk = flow.get(\"StellarSdk\");\nvar server = flow.get('server',server);\nvar secretiss = msg.secret;\nvar asset = flow.get('asset',asset)\nvar assetiss = msg.public\n//var amount = flow.get('amount',amount)\n//var op = msg.op\n//flow.set('StellarSDK',StellarSDK);\n//flow.set('server',server);\nvar count = flow.get('count',count)\nvar price = flow.get('price',price)\nprice=price*2\n\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretiss);\nvar transaction;\n\nvar secretdist = flow.get('secretdist',secretdist)\nvar distKeys = StellarSdk.Keypair.fromSecret(secretdist);\nvar dist = distKeys.publicKey()\n\nserver\n  .loadAccount(dist)\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = flow.get('transaction',transaction)\n    \n        .addOperation(\n        StellarSdk.Operation.manageSellOffer({\n            selling: new StellarSdk.Asset(asset+count,assetiss),\n            buying: StellarSdk.Asset.native(),\n            amount: \".0000001\",\n            price: price,\n            source: distKeys.publicKey()\n     }),\n      )\n      \n     flow.set('transaction',transaction);\n      node.send(msg)\n   // return server.submitTransaction(transaction);\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1260,
+        "y": 240,
+        "wires": [
+            [
+                "18aae072.6534",
+                "bf69fe1e.c09f5"
+            ]
+        ]
+    },
+    {
+        "id": "48a0dce9.2a3374",
+        "type": "switch",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "count",
+        "property": "count",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "00",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "01",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "02",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 1070,
+        "y": 220,
+        "wires": [
+            [
+                "d97c4e6e.bbad5"
+            ],
+            [
+                "b1b47223.3c24e"
+            ],
+            [
+                "8d2dda8a.c16a58"
+            ],
+            [
+                "1b97bf95.1e7f4"
+            ]
+        ]
+    },
+    {
+        "id": "ba3f7c31.73156",
+        "type": "switch",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Network Switch",
+        "property": "network",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "test",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "public",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 280,
+        "y": 400,
+        "wires": [
+            [
+                "c05795f7.439c38"
+            ],
+            [
+                "3e3e222a.feb0ee"
+            ]
+        ]
+    },
+    {
+        "id": "3e3e222a.feb0ee",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Setup StellarSDK flow.transaction \\n fund new keypair",
+        "func": "var StellarSdk = global.get(\"stellarsdk\");\nvar server = new StellarSdk.Server(\"https://horizon.stellar.org\");\n\nvar asset = flow.get('asset',asset)\n\n//var op = msg.op\nflow.set('StellarSdk',StellarSdk);\nflow.set('server',server);\n//node.send(msg)\n\nconst pair = StellarSdk.Keypair.random();\nmsg.secret=pair.secret();\nmsg.public=pair.publicKey();\n\nvar secretiss = msg.secret;\nvar assetiss = msg.public\nflow.set('assetiss',assetiss)\n\nvar secretdist = flow.get('secretdist',secretdist);\nvar sourceKeys = StellarSdk.Keypair.fromSecret(secretdist);\n\n\nvar transaction;\n\n//node.send(msg)\n\nserver\n  .loadAccount(sourceKeys.publicKey())\n\n  .then(function (sourceAccount) {\n    // Start building the transaction.\n    transaction = new StellarSdk.TransactionBuilder(sourceAccount, {\n      fee: StellarSdk.BASE_FEE,\n      networkPassphrase: StellarSdk.Networks.PUBLIC,\n    })\n      .addOperation(\n        StellarSdk.Operation.createAccount({\n          destination: msg.public,\n          startingBalance: \"1.5\",\n          source: sourceKeys.publicKey()\n        }),\n      )\n      \n      flow.set('transaction',transaction);\n      node.send(msg)\n  })\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 500,
+        "wires": [
+            [
+                "df7cc11d.3dfcd",
+                "771e4cb4.c0f634"
+            ]
+        ]
+    },
+    {
+        "id": "fe25e404.400888",
+        "type": "ui_dropdown",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "label": "Network",
+        "tooltip": "",
+        "place": "Test",
+        "group": "8d9479b0.c2e3b8",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Test",
+                "value": "test",
+                "type": "str"
+            },
+            {
+                "label": "Public",
+                "value": "public",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1160,
+        "y": 1140,
+        "wires": [
+            [
+                "3f41634b.73b8fc"
+            ]
+        ]
+    },
+    {
+        "id": "3f41634b.73b8fc",
+        "type": "function",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "network",
+        "func": "var network = msg.payload\nflow.set('network',network);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is deployed.\nvar network = \"test\"\nflow.set('network',network);",
+        "finalize": "",
+        "x": 1420,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c6546ec.478878",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "dc7cec58.04e1e",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9351e1ec.b79db",
+        "type": "comment",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Bug - Cannot create more than 31 \\n Makes 1 more than requested - #00",
+        "info": "",
+        "x": 1180,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "423bfbfe.7d03b4",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1430,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f001f6f.dec0e08",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1430,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "bf69fe1e.c09f5",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1430,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "13fd3a28.66f666",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1430,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "e862b209.ae8cc",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ed36461a.64d508",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c034165e.712cc8",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "771e4cb4.c0f634",
+        "type": "debug",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "980b3aa8.a4c208",
+        "type": "comment",
+        "z": "9ae7d6dd.0d8cc8",
+        "name": "Max price 5 \\n Offers 0,1,&2 editions more expensive",
+        "info": "",
+        "x": 1270,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8d9479b0.c2e3b8",
+        "type": "ui_group",
+        "name": "NFT Multimaker",
+        "tab": "73449d79.7a6494",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "73449d79.7a6494",
+        "type": "ui_tab",
+        "name": "NFT Generator",
+        "icon": "dashboard",
+        "order": 12,
+        "disabled": false,
+        "hidden": false
+    }
+]
